@@ -15,24 +15,27 @@ body {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: repeat(auto-fit, 1fr);
   place-items: center;
-  /* align-items: center;
-  justify-content: center;
-  flex-direction: column; */
 }
 
-.title_wrap {
-}
-
-.title {
+.title-wrap {
   grid-row: 1;
-  color: white;
-  text-transform: uppercase;
+  background-color: white;
+  border-radius: 30px;
   text-align: center;
+  padding: 1rem;
+  width: calc(100% - 5rem);
+  max-width: 620px;
   margin: 0 1.5rem;
-  max-width: 700px;
-  animation: drop-title ease 1s forwards;
+
+  /* animation: drop-title ease 1s forwards; */
+}
+.text {
+}
+.title {
+  text-transform: uppercase;
+  margin: 0 1.5rem;
 }
 
 .video {
