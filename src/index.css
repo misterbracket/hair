@@ -13,28 +13,34 @@ body {
 .app {
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 30% 70%;
+  place-items: center;
+  /* align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .title_wrap {
 }
 
 .title {
+  grid-row: 1;
   color: white;
   text-transform: uppercase;
   text-align: center;
   margin: 0 1.5rem;
   max-width: 700px;
-
-  /* animation: drop-title ease 1s forwards; */
+  animation: drop-title ease 1s forwards;
 }
 
+.video {
+  grid-row: 2;
+}
 .camera {
   border-radius: 30px;
-  height: auto;
+  /* aspect-ratio: 16 / 9; */
   width: calc(100% - 3rem);
   max-width: 700px;
   margin: 0 1.5rem;
