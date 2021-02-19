@@ -5,7 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(45deg, goldenrod, rebeccapurple);
+  background: linear-gradient(30deg, goldenrod, rebeccapurple, cornflowerblue);
+  animation: bg-animation 25s infinite;
+  background-size: 300%;
 }
 
 .app {
@@ -17,10 +19,44 @@ body {
   flex-direction: column;
 }
 
+.title_wrap {
+}
+
 .title {
   color: white;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 1.5rem;
+  max-width: 700px;
+
+  /* animation: drop-title ease 1s forwards; */
 }
 
 .camera {
   border-radius: 30px;
+  height: auto;
+  width: calc(100% - 3rem);
+  max-width: 700px;
+  margin: 0 1.5rem;
+}
+
+@keyframes drop-title {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes bg-animation {
+  0% {
+    background-position: left;
+  }
+  50% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
 }
