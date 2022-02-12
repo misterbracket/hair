@@ -1,8 +1,38 @@
+:root {
+  --bg-color: antiquewhite;
+  --typewriterSpeed: 4s;
+  --typewriterCharacters: 15;
+
+  --shadow-color: 285deg 14% 22%;
+  --shadow-elevation-low: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+    1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
+  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.36),
+    0.8px 1.6px 2px -0.8px hsl(var(--shadow-color) / 0.36),
+    2.1px 4.1px 5.2px -1.7px hsl(var(--shadow-color) / 0.36),
+    5px 10px 12.6px -2.5px hsl(var(--shadow-color) / 0.36);
+  --shadow-elevation-high: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
+    2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
+    4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
+    7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
+    11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
+    17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
+    25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+  min-height: 100vh;
+  height: 100%;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(30deg, goldenrod, rebeccapurple, cornflowerblue);
@@ -12,49 +42,100 @@ body {
 
 .app {
   width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fit, 1fr);
-  place-items: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-
-.title-wrap {
-  grid-row: 1;
-  background-color: white;
-  border-radius: 30px;
-  text-align: center;
-  padding: 1rem;
-  width: calc(100% - 5rem);
-  max-width: 620px;
-  margin: 0 1.5rem;
-
-  /* animation: drop-title ease 1s forwards; */
-}
-.text {
-}
-.title {
-  text-transform: uppercase;
-  margin: 0 1.5rem;
-}
-
-.video {
-  grid-row: 2;
-}
-.camera {
-  border-radius: 30px;
-  /* aspect-ratio: 16 / 9; */
-  width: calc(100% - 3rem);
+.wrapper {
+  margin-top: auto;
+  margin-bottom: auto;
   max-width: 700px;
   margin: 0 1.5rem;
 }
 
-@keyframes drop-title {
-  0% {
-    transform: translateY(-200px);
+.text-wrapper {
+  background: var(--bg-color);
+  box-shadow: var(--shadow-elevation-high);
+  padding: 1rem;
+  border-radius: 1px;
+  border: 2px dashed black;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 600ms) forwards;
+}
+
+.video {
+  text-align: center;
+  box-shadow: var(--shadow-elevation-high);
+  border-radius: 1px;
+  border: 2px dashed black;
+}
+
+video {
+  width: 100%;
+}
+
+.title-wrap {
+  background: var(--bg-color);
+  padding: 1rem;
+  border-radius: 1px;
+  border: 2px dashed black;
+  box-shadow: var(--shadow-elevation-high);
+}
+
+h1 {
+  font-size: clamp(1rem, 3vw + 1rem, 4rem);
+  position: relative;
+  font-family: "Source Code Pro", monospace;
+  position: relative;
+  width: max-content;
+}
+
+h1::before,
+h1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+h1::before {
+  background: var(--bg-color);
+  animation: typewriter var(--typewriterSpeed)
+    steps(var(--typewriterCharacters)) 1s forwards;
+}
+
+h1::after {
+  width: 0.125em;
+  background: black;
+  animation: typewriter var(--typewriterSpeed)
+      steps(var(--typewriterCharacters)) 1s forwards,
+    blink 750ms steps(var(--typewriterCharacters)) infinite;
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
   }
-  100% {
-    transform: translateY(0px);
+}
+
+@keyframes blink {
+  to {
+    background: transparent;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
